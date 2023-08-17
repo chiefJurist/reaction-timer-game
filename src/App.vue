@@ -1,6 +1,13 @@
 <template>
-    
+    <h1>Tony Reaction Timer</h1>
 </template>
+
+<script>
+    export default{
+        name: 'App',
+        components: {  }
+    }
+</script>
 
 <style>
     #app {
