@@ -1,9 +1,9 @@
 <template>
     <h1>Tony Reaction Timer</h1>
     <button @click="start" :disabled="isplaying">play</button>
-    <!--Above we are setting the play button to be disabled while we play-->
-    <!--Below we set the delay for the block appearance-->
-    <Block v-if="isplaying" :delay="delay"/>
+    <!--We are now setting the emitted value to a function using '@end="endGame"'-->
+    <Block v-if="isplaying" :delay="delay" @end="endGame"/>
+    <p v-if="showResults">Reaction time: {{ score }}ms</p>
 </template>
 
 
@@ -16,13 +16,25 @@
         data(){
             return{
                 isplaying: false,
-                delay: null
+                delay: null,
+                score: null,
+                showResults: false
             }
         },
         methods: {
             start() {
                 this.isplaying = true
                 this.delay = 2000 + Math.random() * 5000
+                //hiding the results
+                this.showResults = false
+            },
+            endGame(reactionTime) {
+                //setting the score property to the reaction time emitted from the child component
+                this.score = reactionTime
+                //Setting the game status to ended
+                this.isplaying = false
+                //Making The Results to show
+                this.showResults = true
             }
         }
     }
