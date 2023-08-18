@@ -19,13 +19,11 @@
                 () => {
                     this.showBlock = true
                     this.startTimer()
-                    //Above we are starting the timer to start immediately the block is mounted
                 }, this.delay
             )
         },
         methods: {
             startTimer(){
-                //This is the function to start the timer and our timer is running in ten milliseconds steps
                 this.timer = setInterval(
                     () => {
                         this.reactionTime +=10
