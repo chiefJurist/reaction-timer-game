@@ -23,7 +23,6 @@
             start() {
                 this.isplaying = true
                 this.delay = 2000 + Math.random() * 5000
-                console.log(this.delay)
             }
         }
     }
