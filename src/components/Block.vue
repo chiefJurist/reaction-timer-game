@@ -1,5 +1,5 @@
 <template>
-    <div class="block" v-if="showBlock">
+    <div class="block" v-if="showBlock" @click="stopTimer">
         click me
     </div>
 </template>
@@ -9,22 +9,34 @@
         props: ['delay'],
         data(){
             return{
-                showBlock: false
+                showBlock: false,
+                timer: null,
+                reactionTime: 0
             }
         },
         mounted(){
-            console.log("component mounted")
             setTimeout(
                 () => {
                     this.showBlock = true
-                    console.log(this.delay)
+                    this.startTimer()
+                    //Above we are starting the timer to start immediately the block is mounted
                 }, this.delay
             )
         },
-        updated(){
-            console.log("component updated")
+        methods: {
+            startTimer(){
+                //This is the function to start the timer and our timer is running in ten milliseconds steps
+                this.timer = setInterval(
+                    () => {
+                        this.reactionTime +=10
+                    }, 10
+                )
+            },
+            stopTimer(){
+                clearInterval(this.timer)
+                console.log(this.reactionTime)
+            }
         }
-        //The mounted() and updated() are the examples of lifecycle hooks
     }
 </script>
 
